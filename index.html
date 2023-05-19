@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sacramento&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: Roboto;
+            display: inline-block;
+        }
+
+        .header {
+            display: flex;
+            height: 57px;
+            border-bottom: 1px solid #dedede;
+            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            z-index: 100;
+        }
+
+        .sidebar-link {
+            font-size: 12px;
+            height: 74px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover {
+            opacity: 0.6;
+        }
+
+        .notification-count {
+            background-color: #cc0000;
+            border-radius: 80px;
+            position: absolute;
+            top: -3px;
+            right: -7px;
+            color: white;
+            border: 2px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            padding: 0 5px;
+            pointer-events: none;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 57px;
+            bottom: 0;
+            background-color: white;
+            width: 72px;
+            padding-top: 5px;
+            z-index: 200;
+            box-shadow: 8px 0 10px -6px rgb(245, 245, 245);
+        }
+
+        .main {
+            margin-top: 60px;
+            margin-left: 100px;
+            margin-left: px;
+            display: inline-block;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            row-gap: 30px;
+            column-gap: 20px;
+        }
+
+        .search-bar {
+            height: 40px;
+            flex: 1;
+            width: 0;
+            min-width: 0;
+            padding-left: 12px;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            border: 1px solid #cccccc;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            box-shadow: inset 0px 1px 2px #eeeeee;
+
+        }
+
+        .search-button {
+            height: 44px;
+            width: 64px;
+            border: 1px solid #cccccc;
+            border-left: none;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+            background-color: #f7f7f7;
+            cursor: pointer;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-button:hover {
+            opacity: 0.7;
+        }
+
+        .search-button:active {
+            opacity: 0.4;
+        }
+
+        .thumbnail {
+            display: inline-block;
+            width: 300px;
+            display: block;
+            border-radius: 15px;
+            transition: border-radius 0.4s;
+        }
+        .thumbnail:hover{
+            border-radius: 0px;
+        }
+
+        .searchbar {
+            font-size: 10px;
+            display: block;
+        }
+
+        .video-title {
+            width: 250px;
+            display: inline-block;
+            font-size: 13px;
+            vertical-align: top;
+            margin-bottom: 0;
+            font-weight: bold;
+        }
+
+        .video-author {
+            padding-left: 50px;
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .video-stats {
+            margin-top: 0;
+            padding-left: 50px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .icon {
+            cursor: pointer;
+            height: 24px;
+
+        }
+
+        .video-time {
+            position: absolute;
+            bottom: 7px;
+            right: 4px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.9);
+            font-size: 12px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+        .video-preview {
+            width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 15px;
+        }
+
+        .profilpic {
+            margin-top: 8px;
+            width: 40px;
+            border-radius: 40px;
+            display: inline-block;
+        }
+        .icon:hover{
+            opacity: 0.4;
+        }
+
+        .srbt {
+            width: 25px;
+        }
+
+        .net {
+            padding-top: 30px;
+        }
+
+        .middle-section {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 470px;
+            margin-left: 60px;
+        }
+
+        .right-section {
+            display: flex;
+            align-items: center;
+            width: 182px;
+            justify-content: space-between;
+            margin-right: 24px;
+            margin-left: 29px;
+            flex-shrink: 0;
+        }
+
+        .thumbnail-container {
+            position: relative;
+        }
+
+        .tooltip {
+            position: absolute;
+            z-index: 1080;
+            display: block;
+            margin: 0;
+            font-family: var(--bs-font-sans-serif);
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: left;
+            text-align: start;
+            text-decoration: none;
+            text-shadow: none;
+            text-transform: none;
+            letter-spacing: normal;
+            word-break: normal;
+            word-spacing: normal;
+            white-space: normal;
+            line-break: auto;
+            font-size: 14px;
+            word-wrap: break-word;
+            opacity: 0;
+        }
+        .voice-search {
+            cursor: pointer;
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+            border: none;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .voice-search:hover {
+            background-color: #cccccc;
+        }
+
+        .voice-search:active {
+            opacity: 0.4;
+        }
+
+        img,
+        svg {
+            vertical-align: middle;
+        }
+
+        .Exercises-YouTube .right-section .icon {
+            cursor: pointer;
+            height: 24px;
+        }
+
+        .tooltip-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .hamburger-menu {
+            height: 24px;
+            margin-left: 24px;
+            margin-right: 24px;
+            cursor: pointer;
+        }
+
+        .youtube-logo {
+            width: 80px;
+            cursor: pointer;
+        }
+
+        .my-channel {
+            height: 32px;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="left-section"><img class="hamburger-menu" src="images/icon2.svg"><img class="youtube-logo"
+                src="images/icon3.svg" width="30px"></div>
+        <div class="middle-section"><input class="search-bar" type="text" placeholder="Search"><button
+                class="search-button tooltip-container"><img class="srbt" src="images/button.svg">
+                <div class="tooltip">Search</div>
+            </button><button class="voice-search tooltip-container"><img src="images/voice.svg">
+                <div class="tooltip">Search with your voice</div>
+            </button></div>
+        <div class="right-section">
+            <div class="tooltip-container"><img class="icon" src="images/icon.svg">
+                <div class="tooltip">Create</div>
+            </div>
+            <div class="tooltip-container"><img class="icon" src="images/last.svg">
+                <div class="tooltip">YouTube apps</div>
+            </div>
+            <div class="tooltip-container"><img class="icon" src="images/final1.svg">
+                <div class="notification-count">9+</div>
+                <div class="tooltip">Notifications</div>
+            </div><img class="my-channel" src="images/profile.jpeg">
+        </div>
+    </header>
+    <nav class="sidebar">
+        <nav class="sidebar">
+            <div class="sidebar-link"><img src="images/side1.svg" width="25px">
+                <div>Home</div>
+            </div>
+            </div>
+            <div class="sidebar-link "><img src="images/side4.png" width="25px">
+                <div>Shorts</div>
+            </div>
+            <div class="sidebar-link net"><img src="images/side2.svg" width="25px">
+                <div>Subcribtions</div>
+                <div class="sidebar-link net"><img src="images/side3.svg" width="25px">
+                    <div>Library</div>
+                </div>
+        </nav>
+    </nav>
+    <div class="main">
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">8:22</div>
+                <img class="thumbnail" src="images/img1.webp">
+            </div>
+            <div>
+                <img src="images/timg1.jpg" alt="" class="profilpic">
+                <p class="video-title">The Future of Smartphones with Google’s CEO</p>
+                <p class="video-author">Mrwhosetheboss &#x2713;</p>
+                <p class="video-stats">26 lakh views &#xB7; 3 months ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">12:55</div>
+                <img class="thumbnail" src="images/img2.webp">
+            </div>
+            <div>
+                <img src="images/timg2.jpg" alt="" class="profilpic">
+                <p class="video-title">DIAMOND PLAY BUTTON UNBOXING | കേരളത്തിലെ ആദ്യത്തെ</p>
+                <p class="video-author">M4 Tech &#x2713;</p>
+                <p class="video-stats">16 lakh views &#xB7; 1 day ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">7:00</div>
+                <img class="thumbnail" src="images/img3.webp">
+            </div>
+            <div>
+                <img src="images/timg3.jpg" alt="" class="profilpic">
+                <p class="video-title">EXTRACTION 2 | Official Trailer | Netflix</p>
+                <p class="video-author">Netflix &#x2713;</p>
+                <p class="video-stats">19 lakh views &#xB7; 5 day ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">5:35</div>
+                <img class="thumbnail" src="images/img4.webp">
+            </div>
+            <div>
+                <img src="images/timg4.jpg" alt="" class="profilpic">
+                <p class="video-title">FAST X | Final Trailer</p>
+                <p class="video-author">The Fast Saga &#x2713;</p>
+                <p class="video-stats">25 lakh views &#xB7; 7 day ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">1:03</div>
+                <img class="thumbnail" src="images/img5.webp">
+            </div>
+            <div>
+                <img src="images/timg5.jpg" alt="" class="profilpic">
+                <p class="video-title">Where is Pushpa? | Pushpa 2 - The Rule </p>
+                <p class="video-author">T-Series &#x2713;</p>
+                <p class="video-stats">1.7 lakh views &#xB7; 2 day ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">7:77</div>
+                <img class="thumbnail" src="images/img6.webp">
+            </div>
+            <div>
+                <img src="images/timg1.jpg" alt="" class="profilpic">
+                <p class="video-title">Google's new Foldable Phone is Weird.</p>
+                <p class="video-author">Mrwhosetheboss &#x2713;</p>
+                <p class="video-stats">2.2 lakh views &#xB7; 10 day ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">6:39</div>
+                <img class="thumbnail" src="images/img7.webp">
+            </div>
+            <div>
+                <img src="images/timg6.jpg" alt="" class="profilpic">
+                <p class="video-title">Google Keynote (Google I/O ‘23)</p>
+                <p class="video-author">Google &#x2713;</p>
+                <p class="video-stats">28.1 lakh views &#xB7; 1 day ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">3:69</div>
+                <img class="thumbnail" src="images/img8.webp">
+            </div>
+            <div>
+                <img src="images/timg7.jpg" alt="" class="profilpic">
+                <p class="video-title">Oppenheimer | New Trailer</p>
+                <p class="video-author">Universal Pictures &#x2713;</p>
+                <p class="video-stats">11.5 lakh views &#xB7; 6 day ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">6:39</div>
+                <img class="thumbnail" src="images/img9.webp">
+            </div>
+            <div>
+                <img src="images/timg9.jpg" alt="" class="profilpic">
+                <p class="video-title">Rabba Janda - Full Video | Mission Majnu | Sidharth Malhotra, Rashmika</p>
+                <p class="video-author">Zee Music Company &#x2713;</p>
+                <p class="video-stats">3.6 lakh views &#xB7; 9 week ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">5:00</div>
+                <img class="thumbnail" src="images/img10.webp">
+            </div>
+            <div>
+                <img src="images/timg10.jpg" alt="" class="profilpic">
+                <p class="video-title">iPad Air ( 5th gen ) | Sensible Suggestions | Malayalam</p>
+                <p class="video-author">CallMeShazzam</p>
+                <p class="video-stats">6.3 lakh views &#xB7; 1 week ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">30:12</div>
+                <img class="thumbnail" src="images/img13.webp">
+            </div>
+            <div>
+                <img src="images/timg3.jpg" alt="" class="profilpic">
+                <p class="video-title">All the Light We Cannot See | Audio Described Official Teaser | Netflix</p>
+                <p class="video-author">Netflix &#x2713;</p>
+                <p class="video-stats">19 lakh views &#xB7; 5 day ago</p>
+            </div>
+        </div>
+        <div class="video-preview">
+            <div class="thumbnail-container">
+                <div class="video-time">10:23</div>
+                <img class="thumbnail" src="images/img14.webp">
+            </div>
+            <div>
+                <img src="images/timg14.jpg" alt="" class="profilpic">
+                <p class="video-title">12K HDR 60FPS DOLBY VISION - DUBAI THE SHINING PEARL OF THE MIDDLE..</p>
+                <p class="video-author">12K Scenic Relaxation &#x2713;</p>
+                <p class="video-stats">12 lakh views &#xB7; 3 months ago</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
